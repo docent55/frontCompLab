@@ -1,4 +1,4 @@
-// import { stopSubmit } from 'redux-form';
+import { stopSubmit } from 'redux-form';
 import { authAPI } from '../API/API';
 
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -22,27 +22,28 @@ export const authReducer = (state = initialState, action) => {
 
 export const setAuthUserData = (id, username, isAuth) => ({type: SET_USER_DATA, payload: {id, username, isAuth}})
 
-
 export const getAuthUserData = () => async (dispatch) => {
     let response = await authAPI.me();
-    console.log(response)
     if (response.status === 200) {
         let {id, username} = response.data;
-        console.log(id);
         dispatch(setAuthUserData(id, username, true));
     }
 }
 
-export const login = (password, username) => async (dispatch) => {
+export const login = (username, password) => async (dispatch) => {
     
-    let response = await authAPI.login(password, username);
-    localStorage.setItem('token', response.data.auth_token);
+    let response = await authAPI.login(username, password);
     
-    if (response.data.auth_token) {
+    console.log(response);
+        if (response.status === 200) {
+        await localStorage.setItem('token', response.data.auth_token);
         dispatch(getAuthUserData());   
-    }
-    // return response;
-}
+        }   else {
+                debugger
+                let message = response.data.non_field_errors;
+                dispatch(stopSubmit('login', {_error: message}));
+                }
+        }
 
 export const logout = () => async (dispatch) => {
     let response = await authAPI.logout();

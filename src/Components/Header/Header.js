@@ -7,6 +7,10 @@ import Main from '../Main/Main';
 import WorkContainer from '../Work/WorkContainer';
 import Login from '../Login/Login';
 import AddMaterial from '../Forms/AddMaterialForm/AddMaterialForm';
+import RankContainer from '../Rank/RankContainer';
+import PositionContainer from '../Position/PositionContainer';
+import SubdivisionContainer from '../Subdivision/SubdivisionContainer';
+import InitiatorContainer from '../Initiator/InitiatorContainer';
 
 const Header = (props) => {
         
@@ -29,6 +33,10 @@ const Header = (props) => {
                             <Nav.Link href='/' >Main </Nav.Link>
                             <Nav.Link href='/work' >Work</Nav.Link>
                             <Nav.Link href='/addmaterial' >Add material</Nav.Link>
+                            <Nav.Link href='/rank' >Rank</Nav.Link>
+                            <Nav.Link href='/position' >Position</Nav.Link>
+                            <Nav.Link href='/subdivision' >Subdivision</Nav.Link>
+                            <Nav.Link href='/initiator' >Initiator</Nav.Link>
                             { !props.isAuth 
                             ? <Nav.Link href='/login' >Login</Nav.Link> 
                             : <div> {props.username} <button onClick={props.logout}>LOGOUT</button></div>
@@ -53,6 +61,10 @@ const Header = (props) => {
                     <Route exact path='/work' component={WorkContainer} />
                     <Route exact path='/addmaterial' component={AddMaterial} />
                     <Route exact path='/login' component={Login} />
+                    <Route exact path='/rank' component={RankContainer} />
+                    <Route exact path='/position' component={PositionContainer} />
+                    <Route exact path='/subdivision' component={SubdivisionContainer} />
+                    <Route exact path='/initiator' component={InitiatorContainer} />
                 </Switch>
             </BrowserRouter>
             </>

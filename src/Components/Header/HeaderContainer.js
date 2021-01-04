@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 
 import Header from './Header';
 
-import { logout, getAuthUserData } from '../../redux/authReducer';
+import { logout } from '../../redux/authReducer';
+import { initializHeader } from '../../redux/appReducer';
+
+import { compose } from 'redux';
+import { withRouter } from 'react-router';
 
 
 
@@ -11,19 +15,29 @@ import { logout, getAuthUserData } from '../../redux/authReducer';
 class HeaderContainer extends React.Component {
 
     componentDidMount() {
-        this.props.getAuthUserData();
+        this.props.initializHeader();
     }
     
 
-    render() {   
+    render() { 
+
+    // if (!this.props.initialized) {
+    //     return <h1>Preloa111111111111111111111111111111111111111111111111111111d</h1>
+        
+//    }
     return <Header {...this.props}/>
     }
 }
 
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
-    username: state.auth.username
+    username: state.auth.username,
+    initialized: state.app.initialized
 });
 
-export default connect(mapStateToProps, {logout, getAuthUserData})(HeaderContainer);
+export default compose(
+    withRouter, 
+    connect(mapStateToProps, {logout, initializHeader}))(HeaderContainer);
+
+// export default connect(mapStateToProps, {logout, getAuthUserData})(HeaderContainer);
 

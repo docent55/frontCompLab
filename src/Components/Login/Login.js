@@ -2,21 +2,32 @@ import React from 'react';
 // import { Form, Button } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import classes from '../common/FormsControls/FormsControl.module.css';
 
 import { login } from '../../redux/authReducer';
+
+import { requiredFields, maxLengthCreator } from '../../utils/validators/valodators';
+import { Input, Textarea } from '../common/FormsControls/FormsControls';
+
+const maxLength10 = maxLengthCreator(10);
 
 const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
+
             <div>
-                <Field placeholder={'Login'} name={'login'} component={'input'} />
+            Login:
+                <Field placeholder={'Login'} name={'login'} component={Input} 
+                validate={[requiredFields]} /> 
             </div>
             <div>
-                <Field placeholder={'Password'} name={'password'} component={'input'} />
+                <Field placeholder={'Password'} name={'password'} component={Input}
+                validate={[requiredFields]} />
             </div>
-            {/* <div>
-                <Field type={'checkbox'} component={'input'}/>
-            </div> */}
+            { props.error && <div className={classes.formSummaryError}>
+                {props.error}
+            </div> }
+
             <div>
                 <button>Login</button>
             </div>

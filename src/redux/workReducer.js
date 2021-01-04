@@ -27,10 +27,8 @@ export const setWorkData = (materials) => ({type: SET_WORK_DATA, materials})
 
 export const getWorkData = () => async (dispatch) => {
     let response = await workAPI.getWork();
-    console.log(response)
     if (response.status === 200) {
         let materials = response.data;
-        console.log(materials);
         dispatch(setWorkData(materials));
     }
 }

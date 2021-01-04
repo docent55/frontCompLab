@@ -12,7 +12,7 @@ const AddMaterialForm = (props) => {
                     <Field placeholder={'Номер дела'} name={'login'} component={'input'} />
                 </div>
                 <div>
-                   <Field name={'type_work'} component={'select'} >
+                    <Field name={'type_work'} component={'select'} >
                     <option value="grapefruit">Грейпфрут</option>
                     <option value="lime">Лайм</option>
                     </Field>  
@@ -34,9 +34,13 @@ const AddMaterial = (props) => {
     </div>
 }
 
-const mapStateToProps = (state) => ({
-    state: 
-});
+export default AddMaterial;
 
-export default connect(mapStateToProps, {})(AddMaterial);
+// const mapStateToProps = (state) => ({
+//     positions: state.positions.positions
+// });
+
+
+
+// export default connect(null, {})(AddMaterial);
 
