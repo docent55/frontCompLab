@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { addPositionData } from '../../../redux/positionReducer';
 
-import { requiredFields, maxLengthCreator } from '../../../utils/validators/valodators';
+import { requiredFields, maxLengthCreator } from '../../../utils/validators/validators';
 
 import { Textarea } from '../../common/FormsControls/FormsControls'
 

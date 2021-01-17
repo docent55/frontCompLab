@@ -11,6 +11,7 @@ import RankContainer from '../Rank/RankContainer';
 import PositionContainer from '../Position/PositionContainer';
 import SubdivisionContainer from '../Subdivision/SubdivisionContainer';
 import InitiatorContainer from '../Initiator/InitiatorContainer';
+import AddWorkContainer from '../Forms/AddMaterialForm/AddMaterialFormContainer';
 
 const Header = (props) => {
         
@@ -59,7 +60,7 @@ const Header = (props) => {
                 <Switch>
                     <Route exact path='/' component={Main} />
                     <Route exact path='/work' component={WorkContainer} />
-                    <Route exact path='/addmaterial' component={AddMaterial} />
+                    <Route exact path='/addmaterial' component={AddWorkContainer} />
                     <Route exact path='/login' component={Login} />
                     <Route exact path='/rank' component={RankContainer} />
                     <Route exact path='/position' component={PositionContainer} />

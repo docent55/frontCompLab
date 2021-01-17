@@ -13,6 +13,7 @@ export default class Work extends Component {
           <td>{e.serial_number}</td>
           <td>{e.receipt_date}</td>
           <td>{e.completion_date}</td>
+          <button onClick={() => this.props.deleteWorkData(e.id)}>del</button>
         </tr>
       </tbody> )
 

@@ -1,4 +1,5 @@
 import * as axios from 'axios';
+import { getInitiators } from '../redux/initiatorReducer';
 
 const instance = axios.create({
     // withCredentials: true,
@@ -29,6 +30,15 @@ export const workAPI = {
         return instance.get(`api/work/`,
         {headers: {Authorization: `Token ${localStorage.getItem('token')}`}})
     },
+    addWork(subdivisions, employees, typeWork, initiators, number, serial_number, receipt_date) {
+        debugger
+        return instance.post(`api/work/add/`,
+        {subdivision: subdivisions, employee: employees, type_work: typeWork, initiator: initiators, number, serial_number, receipt_date},
+        {headers: {Authorization: `Token ${localStorage.getItem('token')}`}})
+    },
+    deleteWork(id) {
+        return instance.delete(`api/work/${id}`, {headers: {Authorization: `Token ${localStorage.getItem('token')}`}})
+    }
 }
 
 export const rankAPI = {
@@ -79,6 +89,23 @@ export const initiatorAPI = {
     addInitiator(family_name, first_name, second_name, rank, position, subdivision) { 
         return instance.post(`api/initiator/`, {family_name, first_name, second_name, rank, position, subdivision},
         {headers: {Authorization: `Token ${localStorage.getItem('token')}`}})
-    
+    },
+    getInitiators() {
+        return instance.get(`api/initiator/`,
+        {headers: {Authorization: `Token ${localStorage.getItem('token')}`}})
+    }
+}
+
+export const EmployeeAPI = {
+    getEmployeesData() {
+        return instance.get(`api/employee/`,
+        {headers: {Authorization: `Token ${localStorage.getItem('token')}`}})
+    }
+}
+
+export const typeWorkAPI = {
+    getTypeWorks() {
+        return instance.get(`api/typework/`,
+        {headers: {Authorization: `Token ${localStorage.getItem('token')}`}})
     }
 }

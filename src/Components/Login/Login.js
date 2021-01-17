@@ -6,30 +6,29 @@ import classes from '../common/FormsControls/FormsControl.module.css';
 
 import { login } from '../../redux/authReducer';
 
-import { requiredFields, maxLengthCreator } from '../../utils/validators/valodators';
+import { requiredFields, maxLengthCreator } from '../../utils/validators/validators';
 import { Input, Textarea } from '../common/FormsControls/FormsControls';
 
 const maxLength10 = maxLengthCreator(10);
 
 const LoginForm = (props) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-
-            <div>
-            Login:
-                <Field placeholder={'Login'} name={'login'} component={Input} 
+        <form className={classes.form} onSubmit={props.handleSubmit}>
+            <h3>Вход</h3>
+            <div className={classes.formRow}>
+                <Field placeholder={'Login'} name={'login'} component={Textarea} 
                 validate={[requiredFields]} /> 
             </div>
-            <div>
-                <Field placeholder={'Password'} name={'password'} component={Input}
+            <div className={classes.formRow}>
+                <Field placeholder={'Password'} name={'password'} component={Textarea}
                 validate={[requiredFields]} />
             </div>
             { props.error && <div className={classes.formSummaryError}>
                 {props.error}
             </div> }
 
-            <div>
-                <button>Login</button>
+            <div >
+                <button className={classes.button}>Login</button>
             </div>
         </form>
 

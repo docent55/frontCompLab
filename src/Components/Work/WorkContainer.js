@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Work from './Work';
 
-import { getWorkData } from '../../redux/workReducer';
+import { getWorkData, deleteWorkData } from '../../redux/workReducer';
 
 class WorkContainer extends React.Component {
 
@@ -21,4 +21,4 @@ const mapStateToProps = (state) => ({
     work: state.work.materials
 });
 
-export default connect(mapStateToProps, { getWorkData })(WorkContainer);
+export default connect(mapStateToProps, { getWorkData, deleteWorkData })(WorkContainer);

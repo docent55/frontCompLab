@@ -4,6 +4,7 @@ import { getRankData } from './rankReducer';
 import { getSubdivisionData } from './subdivisionReducer';
 
 const SET_INITIATOR_FORM_DATA = 'SET_INITIATOR_FORM_DATA';
+const SET_INITIATOR_DATA = 'SET_INITIATOR_DATA';
 
 let initialState = {
     initializedSuccessIniciator: false,
@@ -24,6 +25,9 @@ export const initiatorReducer = (state = initialState, action) => {
         case SET_INITIATOR_FORM_DATA:
             
             return {...state, initializedSuccessIniciator: true}
+
+        case SET_INITIATOR_DATA:
+            return {...state, initiatorsData: [...action.initiators]}
             
         default:
             return state;
@@ -31,12 +35,12 @@ export const initiatorReducer = (state = initialState, action) => {
 };
 
 export const setInitiatorData = () => ({type: SET_INITIATOR_FORM_DATA});
+export const setInitiators = (initiators) => ({type: SET_INITIATOR_DATA, initiators})
 
 export const getInitiatorData = () => async (dispatch) => {
     let responseRank = await rankAPI.getRanks();
     let responsePosition = await positionAPI.getPositions();
     let responseSubdivision = await subdivisionAPI.getSubdivision();
-    console.log(responseRank)
     // if (responseRank.status === 200) {
     //     let ranks = responseRank.data;
     //     console.log(ranks);
@@ -46,25 +50,12 @@ export const getInitiatorData = () => async (dispatch) => {
     dispatch(setInitiatorData());
     }
 
+export const getInitiatorsData = () => async (dispatch) => {
+    let response = await initiatorAPI.getInitiators();
+    console.log(response.data);
+    dispatch(setInitiators(response.data));
+}
+
 export const addInitiatorData = (family_name, first_name, second_name, rank, position, subdivision) => async (dispatch) => {
     let response = await initiatorAPI.addInitiator(family_name, first_name, second_name, rank, position, subdivision);
 }
-
-
-
-// export const login = (password, username) => async (dispatch) => {
-    
-//     let response = await authAPI.login(password, username);
-//     localStorage.setItem('token', response.data.auth_token);
-    
-//     if (response.data.auth_token) {
-//         dispatch(getAuthUserData());   
-//     }
-    // return response;
-// }
-// export const initializInitiators = () => async (dispatch) => {
-//     let responseGetIniciators = await dispatch(getInitiatorData());
-    
-//     dispatch(initializedSuccess());
-    
-//   }

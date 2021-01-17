@@ -9,6 +9,8 @@ import { positionReducer } from './positionReducer';
 import { subdivisionReducer } from './subdivisionReducer';
 import { initiatorReducer } from './initiatorReducer';
 import { appReducer } from './appReducer';
+import { employeeReducer } from './employeeReducer';
+import { typeWorkReducer } from './typeWorkReducer';
 
 let reducers = combineReducers({
     auth: authReducer,
@@ -18,6 +20,8 @@ let reducers = combineReducers({
     subdivisions: subdivisionReducer,
     initiators: initiatorReducer,
     app: appReducer,
+    employees: employeeReducer,
+    typeWork: typeWorkReducer,
     form: formReducer
 });
 
